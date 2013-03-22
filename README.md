@@ -7,6 +7,8 @@ An openGl program that parses and displays L Trees for CS260.
 
 ##todo 
     - finish parser
-        - read in the other values
-        - execute the l string 
+        - implement process_char
+    - clean parser
+        - style
+        - functions
     - implement in opengl
