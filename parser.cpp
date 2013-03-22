@@ -8,9 +8,7 @@
 using namespace std; 
 
 bool start; 
-
 char SPACE = ' ';
-
 string LEN = "len:";
 int SEG_LEN;
 string ITER = "iter:";
@@ -23,6 +21,34 @@ string START = "start:";
 char INIT_C; 
 map<char, string> PRODUCTION_RULES; 
 map<char, bool> in_RULES; 
+
+class Turtle_Pos { 
+    float H, L, U; 
+    public: 
+        Turtle_Pos ( float, float, float );
+        turn ( float ); 
+        pitch ( float ); 
+};
+
+Turtle_Pos::Turtle_Pos ( ) {
+    H = 0; 
+    L = 0; 
+    U = 0; 
+}
+
+Turtle_Pos::Turtle_Pos (float h, float, l, float u) {
+    H = h; 
+    L = l; 
+    U = u;
+}
+
+Turtle_Pos::turn ( float theta ) {
+
+}
+
+Turtle_Pos::pitch ( float theta ) { 
+
+}
 
 void execute_char ( char c ) { 
     if (c == INIT_C) { 
