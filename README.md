@@ -12,3 +12,7 @@ An openGl program that parses and displays L Trees for CS260.
         - style
         - functions
     - implement in opengl
+    - Testing 
+        - Add test cases 
+        - Key commands
+    - Report
