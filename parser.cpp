@@ -23,7 +23,9 @@ map<char, string> PRODUCTION_RULES;
 map<char, bool> in_RULES; 
 
 class Turtle_Pos { 
-    float H, L, U; 
+    int x, y; 
+    vec3 H, L, U; 
+    mat4 pos; 
     public: 
         Turtle_Pos ( float, float, float );
         turn ( float ); 
@@ -31,9 +33,13 @@ class Turtle_Pos {
 };
 
 Turtle_Pos::Turtle_Pos ( ) {
-    H = 0; 
-    L = 0; 
-    U = 0; 
+    H = vec3( 1.0f, 0.0f, 0.0f ); 
+    L = vec3( 0.0f, 1.0f, 0.0f ); 
+    U = vec3( 0.0f, 0.0f, 1.0f );
+    pos = mat4( 1.0f, 0.0f, 0.0f, 0.0f,
+                0.0f, 1.0f, 0.0f, 0.0f,
+                0.0f, 0.0f, 1.0f, 0.0f,
+                0.0f, 0.0f, 0.0f, 1.0f );
 }
 
 Turtle_Pos::Turtle_Pos (float h, float, l, float u) {
