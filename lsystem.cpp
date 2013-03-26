@@ -40,7 +40,6 @@ std::vector<float> ROTATIONS;
 std::vector<vec4> ITER_COPY; 
 std::vector<vec4> POSITIONS; 
 
-
 int ITERATIONS;
 int POINTS_COUNT = 0;
 float SEG_LEN;
@@ -208,17 +207,13 @@ void execute_line ( std::string l ) {
 }//execute_line
 
 std::string process_char ( char c ) {
-    //assume correct input
-    std::cout << "proccessing char " << c << std::endl;
-    std::stringstream ss;
-    std::string a;
-    ss << c;
-    ss >> a;
-    if ( c == INIT_C) {
-        return PRODUCTION_RULES.at ( c );
+    std::string a = "";
+    if ( INIT_C == c ) {
+        a = PRODUCTION_RULES.at ( c );
     } else {
-        return a;
+        a += c;
     }
+    return a; 
 }//process_char
 
 std::string next_iter ( std::string l ) {
@@ -321,8 +316,7 @@ void compPoints()
     if (in.is_open ( ) ) {
         std::cout << "File is open" << std::endl;
         start = false;
-        POSITIONS.push_back( vec4(0.0f, 0.0f, 0.0f, 1.0f) );
-        ITER_COPY.push_back( vec4(0.0f, 0.0f, 0.0f, 1.0f) ); 
+        POSITIONS.push_back( vec4(0.0f, 0.0f, 0.0f, 1.0f) ); 
         while(in.good ( ) ) {
             getline (in, line);
             process_line (line);
@@ -353,7 +347,7 @@ void InitializeProgram()
 }
 
 /*
-   create and initialize and VBO for Gasket point coordinates
+   create and initialize and VBO 
    */
 GLuint  POSITIONSVBO; // VBOs for point positional data
 void InitializeVertexBuffer()
