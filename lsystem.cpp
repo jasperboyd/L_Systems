@@ -198,7 +198,11 @@ void execute_char ( char c ) {
 }//process_char
 
 void execute_line ( std::string l ) {
-    std::cout << "execute_line ( )" << std::endl;
+    std::cout << "execute_line ( " 
+    				<< l
+    			    << " )" 
+    			    << std::endl;
+    
     int l_l = l.length( );
     
     for ( int i = 0; i < l_l; i++ ) {
@@ -206,39 +210,34 @@ void execute_line ( std::string l ) {
     }
 }//execute_line
 
-std::string process_char ( char c ) {
-    std::string a = "";
+void process_char ( char c ) {
     if ( INIT_C == c ) {
-        a = PRODUCTION_RULES.at ( c );
+        execute_line ( PRODUCTION_RULES.at ( c ) );
     } else {
-        a += c;
+        execute_char ( a )
     }
-    return a; 
 }//process_char
 
-std::string next_iter ( std::string l ) {
+void next_iter ( std::string l ) {
     std::cout << "next_iter ( " << l << " )" << std::endl;
     int l_l = l.length ( );
-    std::string answer = "";
     for ( int i = 0; i < l_l; i++ ) {
-        answer += process_char ( l[i] );
+        process_char ( l[i] );
     }
-    std::cout << "answer " << answer << std::endl;
-    return answer;
 }//next_iter
 
 void execute ( ) {
     std::cout << "execute ( )" << std::endl;
-    std::string current_str = PRODUCTION_RULES.at(INIT_C);
+    std::string current_str = ""; 
+    current_str += INIT_C;
     for (int i = 0; i < ITERATIONS; i++) {
         std::cout << "Beginning Iteration: " << i << std::endl;
-        execute_line( current_str );
-        current_str = next_iter ( current_str );
+        next_iter ( current_str );
     }//for
 }//execute
 
-void process_line ( std::string l ) {
-    std::cout << "process_line ( )" << std::endl;
+void parse_line ( std::string l ) {
+    std::cout << "parse_line ( )" << std::endl;
     std::string t; 
     
     int l_l = l.length( );
@@ -304,12 +303,12 @@ void process_line ( std::string l ) {
         in_RULES.insert (std::pair<char, bool> ( F, true ) );
         std::cout << "here" << std::endl;
     }//if/else
-}//process_line
+}//parse_line
 
 void compPoints()
 {
     std::string line;
-    std::string filename = "test/lsys2";
+    std::string filename = "test/lsys1";
     filename = filename + ".txt";
     std::cout << filename << std::endl;
     std::ifstream in (filename.c_str());
@@ -319,7 +318,7 @@ void compPoints()
         POSITIONS.push_back( vec4(0.0f, 0.0f, 0.0f, 1.0f) ); 
         while(in.good ( ) ) {
             getline (in, line);
-            process_line (line);
+            parse_line (line);
         }
         execute ( );
     } else {
